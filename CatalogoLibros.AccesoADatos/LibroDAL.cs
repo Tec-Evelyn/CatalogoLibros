@@ -102,7 +102,7 @@ namespace CatalogoLibros.AccesoADatos
             return libros;
         }
 
-        public static async Task<List<Libro>> BuscarIncluirLlavesAsync(Libro pLibro)
+        public static async Task<List<Libro>> BuscarIncluirRelacionesAsync(Libro pLibro)
         {
             var libros = new List<Libro>();
             using (var bdContexto = new BDContexto())
