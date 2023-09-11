@@ -1,4 +1,5 @@
 ﻿using CatalogoLibros.EntidadesDeNegocio;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,7 +74,7 @@ namespace CatalogoLibros.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var Usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.Id == pUsuario.Id);
+                var usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.Id == pUsuario.Id);
                 bdContexto.Usuario.Remove(usuario);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -94,7 +95,7 @@ namespace CatalogoLibros.AccesoADatos
             var usuarios = new List<Usuario>();
             using (var bdContexto = new BDContexto())
             {
-                usuarios = await bdContexto.Usuario.TolistAsync();
+                usuarios = await bdContexto.Usuario.ToListAsync();
             }
             return usuarios;
         }
@@ -124,7 +125,7 @@ namespace CatalogoLibros.AccesoADatos
             using (var bdContexto = new BDContexto())
             {
                 var select = bdContexto.Usuario.AsQueryable();
-                select = Queryable(select, pUsuario);
+                select = QuerySelect(select, pUsuario);
                 Usuarios = await select.ToListAsync();
             }
             return Usuarios;
@@ -136,7 +137,7 @@ namespace CatalogoLibros.AccesoADatos
             {
                 var select = bdContexto.Usuario.AsQueryable();
                 select = QuerySelect(select, pUsuario).Include(s => s.Rol).AsQueryable();
-                usuarios = await select.TolistAsync();
+                usuarios = await select.ToListAsync();
             }
             return usuarios;
         }
