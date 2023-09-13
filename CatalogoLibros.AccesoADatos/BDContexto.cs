@@ -19,7 +19,18 @@ namespace CatalogoLibros.AccesoADatos
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             optionsBuilder.UseSqlServer(@"Data Source=Monica; Initial Catalog=CatalogoLibros;Integrated Security=True; Trusted_Connection=True; encrypt = false; trustServerCertificate = false");
+
+
+            //optionsBuilder.UseSqlServer(@"Data Source=KATHY\KATHY; Initial Catalog=CatalogoLibros; Integrated Security=True; encrypt= false; trustServerCertificate=false");
+
+            //optionsBuilder.UseSqlServer(@"Data Source=Josue-Perez; Initial Catalog=CatalogoLibros;Integrated Security=True; Trusted_Connection=True; encrypt = false; trustServerCertificate = false");
+
+
+            //optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-QN360REH\SQLEXPRESS; Initial Catalog=CatalogoLibros;Integrated Security=True; Trusted_Connection=True; encrypt = false; trustServerCertificate = false");
+
+
         }
     }
 }
