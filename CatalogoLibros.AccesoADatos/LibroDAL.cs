@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CatalogoLibros.AccesoADatos
 {
     public class LibroDAL
-    {
+    { 
         public static async Task<int> CrearAsync(Libro pLibro)
         {
             int result = 0;

@@ -40,8 +40,9 @@ namespace CatalogoLibros.EntidadesDeNegocio
         [Display(Name = "Número de Paginas")]
         public int NumPaginas { get; set; }
 
-        [Display(Name = "Fecha de Publicación")]
-        public DateTime FechaPublicacion { get; set; }
+        [Required(ErrorMessage = "La FechaPublicacion es requerida")]
+        [MaxLength(15, ErrorMessage = "El máximo es 15 caracteres")]
+        public string FechaPublicacion { get; set; }
 
         [NotMapped]
         public int Top_Aux { get; set; }
