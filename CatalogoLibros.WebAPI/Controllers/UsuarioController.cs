@@ -4,12 +4,7 @@ using CatalogoLibros.WebAPI.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-
 using System.Text.Json;
-using System.Threading.Tasks;
-   
-    
 
 
 namespace CatalogoLibros.WebAPI.Controllers
@@ -21,8 +16,8 @@ namespace CatalogoLibros.WebAPI.Controllers
     {
         private UsuarioBL usuarioBL = new UsuarioBL();
 
-        //Código para agregar la seguridad JWT
-        private readonly  IJwtAuthenticatioService authService;
+        // Codigo para agregar la seguridad JWT
+        private readonly IJwtAuthenticatioService authService;
         public UsuarioController(IJwtAuthenticatioService pAuthService)
         {
             authService = pAuthService;
@@ -34,15 +29,15 @@ namespace CatalogoLibros.WebAPI.Controllers
             return await usuarioBL.ObtenerTodosAsync();
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{id}")]
         public async Task<Usuario> Get(int id)
         {
             Usuario usuario = new Usuario();
             usuario.Id = id;
             return await usuarioBL.ObtenerPorIdAsync(usuario);
         }
-        [HttpGet]
 
+        [HttpPost]
         public async Task<ActionResult> Post([FromBody] Usuario usuario)
         {
             try
@@ -92,25 +87,26 @@ namespace CatalogoLibros.WebAPI.Controllers
         [HttpPost("Buscar")]
         public async Task<List<Usuario>> Buscar([FromBody] object pUsuario)
         {
+
             var option = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             string strUsuario = JsonSerializer.Serialize(pUsuario);
             Usuario usuario = JsonSerializer.Deserialize<Usuario>(strUsuario, option);
             var usuarios = await usuarioBL.BuscarIncluirRolesAsync(usuario);
-            usuarios.ForEach(s => s.Rol.Usuario = null); //Evitar la redundancia de datos
-            return usuarios; 
+            usuarios.ForEach(s => s.Rol.Usuario = null); // Evitar la redundacia de datos
+            return usuarios;
         }
 
         [HttpPost("Login")]
-        [AllowAnonymous]//Cualquiera puede iniciar sesión (con usuario y password)
-                          //Código de operación exitosa u ooperación fallida
+        [AllowAnonymous]
         public async Task<ActionResult> Login([FromBody] object pUsuario)
         {
+
             var option = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             string strUsuario = JsonSerializer.Serialize(pUsuario);
             Usuario usuario = JsonSerializer.Deserialize<Usuario>(strUsuario, option);
-            //Código para autorizar el usuario poor JWT
+            // codigo para autorizar el usuario por JWT
             Usuario usuario_auth = await usuarioBL.LoginAsync(usuario);
-            if(usuario_auth != null && usuario_auth.Id > 0 && usuario.Login == usuario_auth.Login)
+            if (usuario_auth != null && usuario_auth.Id > 0 && usuario.Login == usuario_auth.Login)
             {
                 var token = authService.Authenticate(usuario_auth);
                 return Ok(token);
@@ -120,9 +116,9 @@ namespace CatalogoLibros.WebAPI.Controllers
                 return Unauthorized();
             }
         }
-                   //Acción
+
         [HttpPost("CambiarPassword")]
-        public async Task<ActionResult> CambiarPassword([FromBody] object pUsuario)
+        public async Task<ActionResult> CambiarPassword([FromBody] Object pUsuario)
         {
             try
             {
