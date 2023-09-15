@@ -11,7 +11,7 @@ namespace CatalogoLibros.LogicaDeNegocios
 {
     public class UsuarioBL
     {
-         public async Task<int> crearAsync(Usuario pUsuario)
+         public async Task<int> CrearAsync(Usuario pUsuario)
         {
             return await UsuarioDAL.CrearAsync(pUsuario);
         }
@@ -41,7 +41,7 @@ namespace CatalogoLibros.LogicaDeNegocios
         {
             return await UsuarioDAL.LoginAsync(pUsuario);
         }
-        public async Task<int> CambiarPassword(Usuario pUsuario, string pPasswordAnt)
+        public async Task<int> CambiarPasswordAsync(Usuario pUsuario, string pPasswordAnt)
         {
             return await UsuarioDAL.CambiarPasswordAsync(pUsuario, pPasswordAnt);
         }
