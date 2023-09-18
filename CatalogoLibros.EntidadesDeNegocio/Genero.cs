@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,6 +19,8 @@ namespace CatalogoLibros.EntidadesDeNegocio
         public string Nombre { get; set; }
         [NotMapped]
         public int top_aux { get; set; }
+        [ValidateNever]
+        public List<Libro> Libro { get; set; }
 
     }
 }
