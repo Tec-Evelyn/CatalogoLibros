@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,8 +47,14 @@ namespace CatalogoLibros.EntidadesDeNegocio
 
         [NotMapped]
         public int Top_Aux { get; set; }
+
+        [ValidateNever]
         public Autor Autor { get; set; }
+
+        [ValidateNever]
         public Categoria Categoria { get; set; }
+
+        [ValidateNever]
         public Genero Genero { get; set; }
     }
 }

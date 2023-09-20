@@ -10,6 +10,7 @@ namespace CatalogoLibros.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class LibroController : ControllerBase
     {
         private LibroBL libroBL = new LibroBL();
@@ -69,7 +70,7 @@ namespace CatalogoLibros.WebAPI.Controllers
                 await libroBL.EliminarAsync(libro);
                 return Ok();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return BadRequest();
             }

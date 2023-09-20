@@ -76,17 +76,23 @@ namespace CatalogoLibros.AccesoADatos
         {
             if (pLibro.Id > 0)
                 pQuery = pQuery.Where(b => b.Id == pLibro.Id);
+
             if (pLibro.IdAutor > 0)
-                pQuery.Where(b => b.IdAutor == pLibro.IdAutor);
+                pQuery = pQuery.Where(b => b.IdAutor == pLibro.IdAutor);
+
             if (pLibro.IdCategoria > 0)
-                pQuery.Where(b => b.IdCategoria == pLibro.IdCategoria);
+                pQuery = pQuery.Where(b => b.IdCategoria == pLibro.IdCategoria);
+
             if (pLibro.IdGenero > 0)
-                pQuery.Where(b => b.IdGenero == pLibro.IdGenero);
+                pQuery = pQuery.Where(b => b.IdGenero == pLibro.IdGenero);
+
             if (!string.IsNullOrWhiteSpace(pLibro.Nombre))
                 pQuery = pQuery.Where(b => b.Nombre.Contains(pLibro.Nombre));
+
             pQuery = pQuery.OrderByDescending(b => b.Id).AsQueryable();
             if (pLibro.Top_Aux > 0)
                 pQuery = pQuery.Take(pLibro.Top_Aux).AsQueryable();
+
             return pQuery;
         }
 

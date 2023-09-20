@@ -13,26 +13,26 @@ namespace CatalogoLibros.WebAPI.Controllers
     //[Authorize]
     public class GeneroController : ControllerBase
     {
-            private GeneroBL GeneroBL = new GeneroBL();
+            private GeneroBL generoBL = new GeneroBL();
          //Primer endpoint(acción)
             [HttpGet]
             public async Task<IEnumerable<Genero>> Get()
             {
-                return await GeneroBL.ObtenerTodosAsync();
+                return await generoBL.ObtenerTodosAsync();
             }
             [HttpGet("{id}")]
             public async Task<Genero> Get(int id)
             {
                 Genero genero = new Genero();
                 genero.Id = id;
-                return await GeneroBL.ObtenerPorIdAsync(genero);
+                return await generoBL.ObtenerPorIdAsync(genero);
             }
             [HttpPost]
             public async Task<ActionResult> Post([FromBody] Genero genero)
             {
                 try
                 {
-                    await GeneroBL.CrearAsync(genero);
+                    await generoBL.CrearAsync(genero);
                     return Ok();
                 }
                 catch (Exception)
@@ -46,7 +46,7 @@ namespace CatalogoLibros.WebAPI.Controllers
             {
                 if (genero.Id == id)
                 {
-                    await GeneroBL.ModificarAsync(genero);
+                    await generoBL.ModificarAsync(genero);
                     return Ok();
                 }
                 else
@@ -61,7 +61,7 @@ namespace CatalogoLibros.WebAPI.Controllers
                 {
                     Genero genero = new Genero();
                     genero.Id = id;
-                    await GeneroBL.EliminarAsync(genero);
+                    await generoBL.EliminarAsync(genero);
                     return Ok();
                 }
                 catch (Exception)
@@ -78,7 +78,7 @@ namespace CatalogoLibros.WebAPI.Controllers
                 string strGenero = JsonSerializer.Serialize(pGenero);
                 //Deserializar: convertir un parametro en formato Json a un formato objeto(genero) 
                 Genero genero = JsonSerializer.Deserialize<Genero>(strGenero, option);
-                return await GeneroBL.BuscarAsync(genero);
+                return await generoBL.BuscarAsync(genero);
             }
         }
     }
