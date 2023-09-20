@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+//using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +28,7 @@ namespace CatalogoLibros.AccesoADatos
             {
                 var genero = await bdContexto.Genero.FirstOrDefaultAsync(c => c.Id == pGenero.Id);
                 genero.Nombre = pGenero.Nombre;
+                bdContexto.Update(genero);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
@@ -40,7 +41,7 @@ namespace CatalogoLibros.AccesoADatos
                 var genero = await bdContexto.Genero.FirstOrDefaultAsync(c => c.Id == pGenero.Id);
                 bdContexto.Genero.Remove(genero);
                 result = await bdContexto.SaveChangesAsync();
-                ;
+                
             }
             return result;
         }
@@ -62,33 +63,32 @@ namespace CatalogoLibros.AccesoADatos
             }
             return genero;
         }
-        internal static IQueryable<Genero> QuerySelect(IQueryable<Genero> pQuery,
-                                   Genero pGenero)
+        internal static IQueryable<Genero> QuerySelect(IQueryable<Genero> pQuery, Genero pGenero)
         {
             if (pGenero.Id > 0)
-                pQuery = pQuery.Where(c => c.Id == pGenero.Id);
+                pQuery = pQuery.Where(g => g.Id == pGenero.Id);
 
-            if (!string.IsNullOrEmpty(pGenero.Nombre))
-                pQuery = pQuery.Where(c => c.Nombre.Contains(pGenero.Nombre));
-            pQuery = pQuery.OrderByDescending(c => c.Id).AsQueryable();
+            if (!string.IsNullOrWhiteSpace(pGenero.Nombre))
+                pQuery = pQuery.Where(g => g.Nombre.Contains(pGenero.Nombre));
 
-            if (pGenero.top_aux > 0)
-                pQuery = pQuery.Take(pGenero.top_aux).AsQueryable();
+            pQuery = pQuery.OrderByDescending(g => g.Id).AsQueryable();
+
+            if (pGenero.Top_Aux > 0)
+                pQuery = pQuery.Take(pGenero.Top_Aux).AsQueryable();
 
             return pQuery;
         }
         public static async Task<List<Genero>> BuscarAsync(Genero pGenero)
         {
-            var genero = new List<Genero>();
+            var generos = new List<Genero>();
             using (var bdContexto = new BDContexto())
             {
                 var select = bdContexto.Genero.AsQueryable();
                 select = QuerySelect(select, pGenero);
-                genero = await select.ToListAsync();
+                generos = await select.ToListAsync();
             }
-            return genero;
+            return generos;
         }
     }
-
 }
 

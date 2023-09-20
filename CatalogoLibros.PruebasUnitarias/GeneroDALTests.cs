@@ -12,7 +12,7 @@ namespace CatalogoLibros.AccesoADatos.Tests
     [TestClass()]
     public class GeneroDALTests
     {
-        private static Genero generoInicial = new Genero { Id = 1};
+        private static Genero generoInicial = new Genero { Id = 2 };
 
 
         [TestMethod()]
@@ -42,14 +42,14 @@ namespace CatalogoLibros.AccesoADatos.Tests
 
             var resultGenero = await GeneroDAL.ObtenerPorIdAsync(genero);
             Assert.AreEqual(genero.Id, resultGenero.Id);
-           
+
         }
 
         [TestMethod()]
         public async Task T4ObtenerTodosAsyncTest()
         {
-          var resultGenero = await GeneroDAL.ObtenerTodosAsync();
-            Assert.AreNotEqual(0, resultGenero.Count);
+            var resultGeneros = await GeneroDAL.ObtenerTodosAsync();
+            Assert.AreNotEqual(0, resultGeneros.Count);
 
         }
 
@@ -58,9 +58,9 @@ namespace CatalogoLibros.AccesoADatos.Tests
         {
             var genero = new Genero();
             genero.Nombre = "C";
-            genero.top_aux = 10;
-            var resultGenero = await GeneroDAL.BuscarAsync(genero);
-            Assert.AreNotEqual(0, resultGenero.Count);
+            genero.Top_Aux = 10;
+            var resultGeneros = await GeneroDAL.BuscarAsync(genero);
+            Assert.AreNotEqual(0, resultGeneros.Count);
         }
         [TestMethod()]
         public async Task T6EliminarAsyncTest()
@@ -69,9 +69,6 @@ namespace CatalogoLibros.AccesoADatos.Tests
             genero.Id = generoInicial.Id;
             int result = await GeneroDAL.EliminarAsync(genero);
             Assert.AreNotEqual(0, result);
-
         }
-
-
     }
 }

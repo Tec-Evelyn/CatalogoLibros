@@ -85,7 +85,7 @@ namespace CatalogoLibros.WebAPI.Controllers
             var libros = await libroBL.BuscarIncluirRelacionesAsync(libro);
             libros.ForEach(s => s.Autor.Libro = null); // Evitar la redundancia de datos
             libros.ForEach(s => s.Categoria.Libro = null);
-            libros.ForEach(s => s.Autor.Libro = null);
+            libros.ForEach(s => s.Genero.Libro = null);
             return libros;
         }
     }

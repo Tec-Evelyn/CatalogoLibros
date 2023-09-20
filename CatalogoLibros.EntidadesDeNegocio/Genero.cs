@@ -15,10 +15,12 @@ namespace CatalogoLibros.EntidadesDeNegocio
         public int Id { get; set; }
 
         [Required(ErrorMessage ="Nombre es obligatorio")]
-        [StringLength(50,ErrorMessage ="Maximo 50 caracteres")]
+        [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string Nombre { get; set; }
+
         [NotMapped]
-        public int top_aux { get; set; }
+        public int Top_Aux { get; set; }
+
         [ValidateNever]
         public List<Libro> Libro { get; set; }
 
