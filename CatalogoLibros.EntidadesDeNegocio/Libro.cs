@@ -43,7 +43,12 @@ namespace CatalogoLibros.EntidadesDeNegocio
 
         [Required(ErrorMessage = "La FechaPublicacion es requerida")]
         [MaxLength(15, ErrorMessage = "El máximo es 15 caracteres")]
+
         public string FechaPublicacion { get; set; }
+       
+        [Required(ErrorMessage = "La descripción es requerida")]
+       
+        public string Descripcion { get; set; }
 
         [NotMapped]
         public int Top_Aux { get; set; }
