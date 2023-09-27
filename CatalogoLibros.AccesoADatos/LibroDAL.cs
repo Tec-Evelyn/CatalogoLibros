@@ -34,6 +34,7 @@ namespace CatalogoLibros.AccesoADatos
                 libro.Imagen = pLibro.Imagen;
                 libro.NumPaginas = pLibro.NumPaginas;
                 libro.FechaPublicacion = pLibro.FechaPublicacion;
+                libro.Descripcion = pLibro.Descripcion;
                 bdContexto.Update(libro);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -88,6 +89,9 @@ namespace CatalogoLibros.AccesoADatos
 
             if (!string.IsNullOrWhiteSpace(pLibro.Nombre))
                 pQuery = pQuery.Where(b => b.Nombre.Contains(pLibro.Nombre));
+
+            if (!string.IsNullOrWhiteSpace(pLibro.Descripcion))
+                pQuery = pQuery.Where(b => b.Descripcion.Contains(pLibro.Descripcion));
 
             pQuery = pQuery.OrderByDescending(b => b.Id).AsQueryable();
             if (pLibro.Top_Aux > 0)
