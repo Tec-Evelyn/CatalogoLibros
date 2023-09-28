@@ -50,6 +50,8 @@ namespace CatalogoLibros.EntidadesDeNegocio
        
         public string Descripcion { get; set; }
 
+        public string Contenido { get; set; }
+
         [NotMapped]
         public int Top_Aux { get; set; }
 
