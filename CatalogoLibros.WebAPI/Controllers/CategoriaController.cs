@@ -11,6 +11,7 @@ namespace CatalogoLibros.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize]
+    //[AllowAnonime]
     public class CategoriaController : ControllerBase
     {
         private CategoriaBL categoriaBL = new CategoriaBL();

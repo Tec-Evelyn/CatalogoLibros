@@ -27,7 +27,6 @@ namespace CatalogoLibros.AccesoADatos
 
             //optionsBuilder.UseSqlServer(@"Data Source=Josue-Perez; Initial Catalog=CatalogoLibros;Integrated Security=True; Trusted_Connection=True; encrypt = false; trustServerCertificate = false");
 
-
             //optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-QN360REH\SQLEXPRESS; Initial Catalog=CatalogoLibros;Integrated Security=True; Trusted_Connection=True; encrypt = false; trustServerCertificate = false");
 
 

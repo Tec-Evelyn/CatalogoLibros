@@ -34,7 +34,7 @@ namespace CatalogoLibros.EntidadesDeNegocio
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "La imagen es requerida")]
-        [MaxLength(200, ErrorMessage = "El máximo es 200 caracteres")]
+        //[MaxLength(200, ErrorMessage = "El máximo es 200 caracteres")]
         public string Imagen { get; set; }
 
         [Required(ErrorMessage = "El numPaginas es requerido")]
