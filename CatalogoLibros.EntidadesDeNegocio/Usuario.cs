@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,7 +44,7 @@ namespace CatalogoLibros.EntidadesDeNegocio
 
         [Required(ErrorMessage = "Estatus es obligatorio")]
         public byte Estatus { get; set; }
-
+        [ValidateNever]
         public Rol Rol { get; set; }
 
         //NotMapped: indica que el top_aux no es tomado en cuenta en el mapeo
@@ -55,7 +56,9 @@ namespace CatalogoLibros.EntidadesDeNegocio
         [StringLength(32, ErrorMessage = "Password debe estar entre 5 a  32 caracteres", MinimumLength = 5)]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password y confirmar password deben ser iguales")]
+       
         [Display(Name = "Confirmar password")]
+        [ValidateNever]
         public string ConfirmPassword_aux { get; set; }
     }
     public enum Estatus_Usuario

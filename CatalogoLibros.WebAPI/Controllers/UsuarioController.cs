@@ -11,7 +11,7 @@ namespace CatalogoLibros.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UsuarioController : ControllerBase
     {
         private UsuarioBL usuarioBL = new UsuarioBL();

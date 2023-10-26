@@ -25,6 +25,8 @@ namespace CatalogoLibros.AccesoADatos.Tests
             libro.Imagen = "https://www.laesferaazul.com/wp-content/uploads/2022/09/Descubrir-el-principito-catalan-832x1024.jpg";
             libro.NumPaginas = 120;
             libro.FechaPublicacion = "06/04/1943";
+            libro.Descripcion = "El Principito es una narración corta del escritor francés Antoine de Saint-Exupéry. La historia se centra en un pequeño príncipe que realiza una travesía por el universo. En este viaje descubre la extraña forma en que los adultos ven la vida y comprende el valor del amor y la amistad";
+            libro.Contenido = "https://firebasestorage.googleapis.com/v0/b/proyectoasp-eb411.appspot.com/o/Jonathan%20Swift%20-%20Los%20Viajes%20de%20Gulliver.pdf?alt=media&token=b3c932fc-a5a7-4603-a66e-d928255e4391";
 
             int result = await LibroDAL.CrearAsync(libro);
             Assert.AreNotEqual(0, result);
@@ -43,6 +45,8 @@ namespace CatalogoLibros.AccesoADatos.Tests
             libro.Imagen = "https://www.laesferaazul.com/wp-content/uploads/2022/09/Descubrir-el-principito-catalan-832x1024.jpg";
             libro.NumPaginas = 130;
             libro.FechaPublicacion = "06/04/1943";
+            libro.Descripcion = "El Principito es una narración corta del escritor francés Antoine de Saint-Exupéry. La historia se centra en un pequeño príncipe que realiza una travesía por el universo. En este viaje descubre la extraña forma en que los adultos ven la vida y comprende el valor del amor y la amistad";
+            libro.Contenido = "https://firebasestorage.googleapis.com/v0/b/proyectoasp-eb411.appspot.com/o/Jonathan%20Swift%20-%20Los%20Viajes%20de%20Gulliver.pdf?alt=media&token=b3c932fc-a5a7-4603-a66e-d928255e4391";
 
             int result = await LibroDAL.ModificarAsync(libro);
             Assert.AreNotEqual(0, result);
